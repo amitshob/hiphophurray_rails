@@ -6,6 +6,9 @@
   <% @songs.each do |song| %>
   <li> <%= link_to song.title, subgenre_song_path(@subgenres, song)  %>
     - <%= link_to "Edit", edit_subgenre_song_path(@subgenres, song) %>
+     <%= link_to "Delete", subgenre_song_path(@subgenres, song),
+          :data => {:confirm => "You Sure?",
+            :method => "delete"}%>
   </li>
   <% end %>
 </ul>
@@ -15,3 +18,10 @@
 <p><%= link_to "Delete", subgenre_path(@subgenres),
 :data => {:confirm => "You sure?",
   :method => "delete"} %></p>
+
+
+<% Song.order(:created_at).each do |song| %>
+  <li> <%= link_to song.title, subgenre_song_path(@subgenres, song)  %> <%= song.created_at %>
+    - <%= link_to "Edit", edit_subgenre_song_path(@subgenres, song) %>
+  </li>
+<% end %>
