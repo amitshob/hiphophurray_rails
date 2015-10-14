@@ -4,7 +4,9 @@
 
 <ul>
   <% @songs.each do |song| %>
-  <li><%= link_to song.title, subgenre_song_path(@subgenres, song)  %></li>
+  <li> <%= link_to song.title, subgenre_song_path(@subgenres, song)  %>
+    - <%= link_to "Edit", edit_subgenre_song_path(@subgenres, song) %>
+  </li>
   <% end %>
 </ul>
 
