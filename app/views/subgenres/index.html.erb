@@ -1,0 +1,9 @@
+<h1>Subgenres</h1>
+
+<ul>
+  <% @subgenres.each do |subgenre| %>
+  <li><%= link_to subgenre.name, subgenre_path(subgenre)  %></li>
+  <% end %>
+</ul>
+
+<%= link_to "New Subgenres", new_subgenre_path %>

@@ -1,0 +1,15 @@
+<%= render "layouts/errors", :object => @songs %>
+
+<h2>Add a new song to <%= @subgenres.name %></h2>
+
+<%= form_for [@subgenres, @songs] do |f| %>
+<%= f.label :title %>
+<%= f.text_field :title %>
+<%= f.label :artist %>
+<%= f.text_field :artist %>
+<%= f.label :summary %>
+<%= f.text_field :summary %>
+<%= f.label :comments %>
+<%= f.text_field :comments %>
+<%= f.submit %>
+<% end %>

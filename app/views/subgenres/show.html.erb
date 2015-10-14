@@ -1,0 +1,15 @@
+<h1><%= @subgenres.name %></h1>
+
+<%= link_to "Add a song", new_subgenre_song_path(@subgenres) %>
+
+<ul>
+  <% @songs.each do |song| %>
+  <li><%= link_to song.title, subgenre_song_path(@subgenres, song)  %></li>
+  <% end %>
+</ul>
+
+
+<p><%= link_to "Edit", edit_subgenre_path(@subgenres) %></p>
+<p><%= link_to "Delete", subgenre_path(@subgenres),
+:data => {:confirm => "You sure?",
+  :method => "delete"} %></p>
