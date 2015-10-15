@@ -1,18 +1,19 @@
 <div class="subgenres-header">
-  <h1><%= @subgenres.name %></h1>  | <%= link_to "Edit", edit_subgenre_path(@subgenres) %>  | <%= link_to "Delete", subgenre_path(@subgenres),:data => {:confirm => "You sure?",:method => "delete"} %>
+  <h1><%= @subgenres.name %></h1>  | <%= link_to "Edit Genre Name", edit_subgenre_path(@subgenres) %>  | <%= link_to "Delete Genre", subgenre_path(@subgenres),:data => {:confirm => "You sure?",:method => "delete"} %>
 </div>
 
 <hr><br>
 
 <h4>Tha songz:</h4>
 <p><%= link_to "Add a song to this genre", new_subgenre_song_path(@subgenres) %></p>
+<br>
 <ul>
   <% @subgenres.songs.order(created_at: :desc).each do |song| %>
-    <li><big> <%= link_to song.title, subgenre_song_path(@subgenres, song)  %> - posted <%= time_ago_in_words(song.created_at)  %> ago -
-      <%= link_to "Edit Genre Name", edit_subgenre_song_path(@subgenres, song) %>
-      | <%= link_to "Delete Genre", subgenre_song_path(@subgenres, song),
+    <li><big><big> <%= link_to song.title, subgenre_song_path(@subgenres, song)  %></big></big> - posted <%= time_ago_in_words(song.created_at)  %> ago -
+      <%= link_to "Edit Song", edit_subgenre_song_path(@subgenres, song) %>
+      | <%= link_to "Delete Song", subgenre_song_path(@subgenres, song),
           :data => {:confirm => "You Sure?",
-            :method => "delete"}%></big>
+            :method => "delete"}%>
   </li>
   <% end %>
 </ul>
