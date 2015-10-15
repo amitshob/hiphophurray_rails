@@ -43,7 +43,6 @@ class SongsController < ApplicationController
   def upvote
     @subgenres = Subgenre.find(params[:subgenre_id])
     @songs = @subgenres.songs.find(params[:id])
-    
     @songs.upvote += 1;
     @songs.save;
     redirect_to subgenre_path(@subgenres)
@@ -51,9 +50,10 @@ class SongsController < ApplicationController
   def downvote
     @subgenres = Subgenre.find(params[:subgenre_id])
     @songs = @subgenres.songs.find(params[:id])
+    @songs.downvote += 1;
+    @songs.save;
     redirect_to subgenre_path(@subgenres)
   end
-
 
 
   private
