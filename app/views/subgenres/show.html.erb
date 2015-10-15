@@ -20,8 +20,8 @@
   :method => "delete"} %></p>
 
 
-<% Song.order(:created_at).each do |song| %>
-  <li> <%= link_to song.title, subgenre_song_path(@subgenres, song)  %> <%= song.created_at %>
+<% @subgenres.songs.order(:created_at).each do |song| %>
+  <li> <%= link_to song.title, subgenre_song_path(@subgenres, song)  %> <%= song.created_at.strftime("Printed on %I:%M%p")  %>
     - <%= link_to "Edit", edit_subgenre_song_path(@subgenres, song) %>
   </li>
 <% end %>
