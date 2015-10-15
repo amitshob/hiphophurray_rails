@@ -9,15 +9,17 @@
 
 </head>
 <body>
-<div class="jumbotron">
-  <h1>HipHopHurray</h1>
-  <h4>We do it for tha streetz</h4>
-</div>
-<%= yield %>
+  <div class="container">
+    <div class="jumbotron">
+      <h1>HipHopHurray</h1>
+      <h4>We do it for tha streetz</h4>
+    </div>
+    <%= yield %>
 
-<hr>
-<center><%= link_to subgenres_path, class: "btn btn-success" do %>
-  <i class="glyphicon glyphicon-home"> Home</i>
-  <% end %></center>
+    <hr>
+    <center><%= link_to subgenres_path, class: "btn btn-success" do %>
+      <i class="glyphicon glyphicon-home"> Home</i>
+      <% end %></center>
+  </div>
 </body>
 </html>
