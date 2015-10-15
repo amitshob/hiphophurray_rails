@@ -11,9 +11,10 @@
 
 <hr><br>
 
-<h4>Tha songz:</h4>
-<p><%= link_to "Add a song to this genre", new_subgenre_song_path(@subgenres) %></p>
+<h3>Tha songz:</h3>
+
 <br>
+
 <ul>
   <% @subgenres.songs.order(created_at: :desc).each do |song| %>
     <li><big><big> <%= link_to song.title, subgenre_song_path(@subgenres, song) %></big></big>
@@ -24,7 +25,14 @@
        | <%= link_to "Delete Song", subgenre_song_path(@subgenres, song),
           :data => {:confirm => "You Sure?",
             :method => "delete"} %>
+      <%= link_to "Upvote",  upvote_subgenre_song_path(@subgenres,song), :data => {:method => "update"}  %>
+      <%= link_to "Downvote", downvote_subgenre_song_path(@subgenres,song), :data => {:method => "update"} %>
+      <%=song.upvote%>
+      <%=song.downvote%>
   </li>
   <% end %>
 </ul>
+
+<br>
+<p><%= link_to "Add a song to this genre", new_subgenre_song_path(@subgenres) %></p>
 <br>

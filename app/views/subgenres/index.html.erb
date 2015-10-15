@@ -6,11 +6,21 @@
   <% end %>
 </ul>
 
+<hr>
+
+<h3>Featured Songs</h3>
+
+  <%= Song.order("RANDOM()").first.title %>
+
+
+
+
 <br><hr>
 
 <h3>All songs available: (a-z)</h3>
   <% Song.all.order(title: :asc).each do |song| %>
     <li> <big><%= link_to song.title, subgenre_song_path(@subgenres, song)  %></big>
        - by <em><%= song.artist %></em>
-       - posted <%= time_ago_in_words(song.created_at)  %> ago  </li>
+       - posted <%= time_ago_in_words(song.created_at)  %> ago </li>
   <% end %>
+<br>
