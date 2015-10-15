@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151014180331) do
+ActiveRecord::Schema.define(version: 20151015083329) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,8 +19,8 @@ ActiveRecord::Schema.define(version: 20151014180331) do
   create_table "songs", force: :cascade do |t|
     t.string   "title"
     t.string   "artist"
-    t.integer  "upvote"
-    t.integer  "downvote"
+    t.integer  "upvote",      default: 0
+    t.integer  "downvote",    default: 0
     t.string   "summary"
     t.string   "comments"
     t.integer  "subgenre_id"

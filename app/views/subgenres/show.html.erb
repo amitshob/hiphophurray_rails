@@ -9,6 +9,9 @@
      <%= link_to "Delete", subgenre_song_path(@subgenres, song),
           :data => {:confirm => "You Sure?",
             :method => "delete"}%>
+      <%= link_to "Upvote",  upvote_subgenre_song_path(@subgenres,song), :data => {:method => "update"}  %>
+      <%= link_to "Downvote", subgenre_song_path(@subgenres,song) %>
+      <%=song.upvote%>
   </li>
   <% end %>
 </ul>
