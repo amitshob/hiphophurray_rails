@@ -10,5 +10,7 @@
 
 <h3>All songs available: (a-z)</h3>
   <% Song.all.order(title: :asc).each do |song| %>
-    <li> <%= link_to song.title, subgenre_song_path(@subgenres, song)  %> - posted <%= time_ago_in_words(song.created_at)  %> ago in <%= @subgenres.name %> </li>
+    <li> <big><%= link_to song.title, subgenre_song_path(@subgenres, song)  %></big>
+       - by <em><%= song.artist %></em>
+       - posted <%= time_ago_in_words(song.created_at)  %> ago  </li>
   <% end %>

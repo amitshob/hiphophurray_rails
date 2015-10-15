@@ -1,6 +1,7 @@
 class SubgenresController < ApplicationController
   def index
     @subgenres = Subgenre.all
+    # @found_genre = Subgenre.find(params[:id])
     render :index
   end
 

@@ -1,6 +1,12 @@
 <h2> Song Title: "<%= @songs.title %>" </h2>
 
 <br>
+  <div id="back-button">
+    <%= link_to subgenre_path, class: "btn btn-xs btn-success" do %>
+    <i class="glyphicon glyphicon-chevron-left"> Back</i>
+    <% end %>
+  </div>
+<br>
 
 <h3> Artist: <%= @songs.artist %> </h3>
 
