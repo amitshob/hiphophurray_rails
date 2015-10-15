@@ -1,27 +1,17 @@
-<h1><%= @subgenres.name %></h1>
+<div class="subgenres-header">
+  <h1><%= @subgenres.name %></h1>  | <%= link_to "Edit", edit_subgenre_path(@subgenres) %>  | <%= link_to "Delete", subgenre_path(@subgenres),:data => {:confirm => "You sure?",:method => "delete"} %>
+</div>
 
+<br><br>
 <%= link_to "Add a song", new_subgenre_song_path(@subgenres) %>
 
 <ul>
-  <% @songs.each do |song| %>
-  <li> <%= link_to song.title, subgenre_song_path(@subgenres, song)  %>
-    - <%= link_to "Edit", edit_subgenre_song_path(@subgenres, song) %>
-     <%= link_to "Delete", subgenre_song_path(@subgenres, song),
+  <% @subgenres.songs.order(:created_at).each do |song| %>
+    <li> <%= link_to song.title, subgenre_song_path(@subgenres, song)  %> - posted <%= time_ago_in_words(song.created_at)  %> ago -
+      <%= link_to "Edit", edit_subgenre_song_path(@subgenres, song) %>
+      | <%= link_to "Delete", subgenre_song_path(@subgenres, song),
           :data => {:confirm => "You Sure?",
             :method => "delete"}%>
   </li>
   <% end %>
 </ul>
-
-
-<p><%= link_to "Edit", edit_subgenre_path(@subgenres) %></p>
-<p><%= link_to "Delete", subgenre_path(@subgenres),
-:data => {:confirm => "You sure?",
-  :method => "delete"} %></p>
-
-
-<% @subgenres.songs.order(:created_at).each do |song| %>
-  <li> <%= link_to song.title, subgenre_song_path(@subgenres, song)  %> <%= song.created_at.strftime("Printed on %I:%M%p")  %>
-    - <%= link_to "Edit", edit_subgenre_song_path(@subgenres, song) %>
-  </li>
-<% end %>
