@@ -1,9 +1,16 @@
-<h1>Subgenres</h1>
+<div class="subgenres-header">
+  <h1>Subgenres</h1> | <%= link_to "Add a new subgenre", new_subgenre_path %>
+</div>
 
 <ul>
   <% @subgenres.each do |subgenre| %>
-  <li><%= link_to subgenre.name, subgenre_path(subgenre)  %></li>
+  <h4> <li><%= link_to subgenre.name, subgenre_path(subgenre)  %></li></h4>
   <% end %>
 </ul>
 
-<%= link_to "New Subgenres", new_subgenre_path %>
+
+
+<h2>All songs available: (a-z)</h2>
+  <% Song.all.order(title: :asc).each do |song| %>
+    <li> <%= link_to song.title, subgenre_song_path(@subgenres, song)  %> - posted <%= time_ago_in_words(song.created_at)  %> ago </li>
+  <% end %>
