@@ -6,7 +6,7 @@
 <%= link_to "Add a song", new_subgenre_song_path(@subgenres) %>
 
 <ul>
-  <% @subgenres.songs.order(:created_at).each do |song| %>
+  <% @subgenres.songs.order(created_at: :desc).each do |song| %>
     <li> <%= link_to song.title, subgenre_song_path(@subgenres, song)  %> - posted <%= time_ago_in_words(song.created_at)  %> ago -
       <%= link_to "Edit", edit_subgenre_song_path(@subgenres, song) %>
       | <%= link_to "Delete", subgenre_song_path(@subgenres, song),
