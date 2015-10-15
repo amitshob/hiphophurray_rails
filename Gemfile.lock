@@ -38,8 +38,13 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.3.8)
     arel (6.0.3)
+    autoprefixer-rails (6.0.3)
+      execjs
+      json
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bootstrap-sass (3.2.0.2)
+      sass (~> 3.2)
     builder (3.2.2)
     byebug (6.0.2)
     capybara (2.5.0)
@@ -133,12 +138,6 @@ GEM
       rspec-support (~> 3.3.0)
     rspec-support (3.3.0)
     sass (3.4.19)
-    sass-rails (5.0.4)
-      railties (>= 4.0.0, < 5.0)
-      sass (~> 3.1)
-      sprockets (>= 2.8, < 4.0)
-      sprockets-rails (>= 2.0, < 4.0)
-      tilt (>= 1.1, < 3)
     shoulda-matchers (3.0.0)
       activesupport (>= 4.0.0)
     slop (3.6.0)
@@ -151,7 +150,6 @@ GEM
       sprockets (>= 2.8, < 4.0)
     thor (0.19.1)
     thread_safe (0.3.5)
-    tilt (2.0.1)
     turbolinks (2.5.3)
       coffee-rails
     tzinfo (1.2.2)
@@ -171,6 +169,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  autoprefixer-rails
+  bootstrap-sass (~> 3.2.0)
   byebug
   capybara
   coffee-rails
@@ -181,7 +181,6 @@ DEPENDENCIES
   quiet_assets
   rails
   rspec-rails
-  sass-rails
   shoulda-matchers
   spring
   turbolinks

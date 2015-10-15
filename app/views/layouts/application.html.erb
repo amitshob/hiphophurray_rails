@@ -3,14 +3,21 @@
 <head>
   <title>HipHopHurray</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag "https://bootswatch.com/cyborg/bootstrap.min.css" %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+
 </head>
 <body>
-
+<div class="jumbotron">
+  <h1>HipHopHurray</h1>
+  <h4>We do it for da streetz</h4>
+</div>
 <%= yield %>
 
 <hr>
-<center><%= link_to "Home", subgenres_path %></center>
+<center><%= link_to subgenres_path, class: "btn btn-primary" do %>
+  <i class="glyphicon glyphicon-home"> Home</i>
+  <% end %></center>
 </body>
 </html>
