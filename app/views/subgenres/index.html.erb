@@ -2,7 +2,7 @@
 
 <ul>
   <% @subgenres.each do |subgenre| %>
-  <h4> <li><%= link_to subgenre.name, subgenre_path(subgenre)  %></li></h4>
+  <h4><big><li><%= link_to subgenre.name, subgenre_path(subgenre)  %></li></big></h4>
   <% end %>
 </ul>
 
