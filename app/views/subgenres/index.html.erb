@@ -2,16 +2,25 @@
 
 <ul>
   <% @subgenres.each do |subgenre| %>
-  <h4><big><li><%= link_to subgenre.name, subgenre_path(subgenre)  %></li></big></h4>
-  <% end %>
+    <h4><big><li><%= link_to subgenre.name, subgenre_path(subgenre)  %></li></big></h4>
+      <h5>Top 3 Songs: </h5>
+        <% subgenre.songs.order(upvote: :desc).first(3).each do |song| %>
+        <li> <big><%= link_to song.title, subgenre_song_path(subgenre, song)  %></big>
+          - by <em><%= song.artist %></em>
+          - posted <%= time_ago_in_words(song.created_at)  %> ago
+          - <%= song.upvote %> upvotes</li>
+        <% end %>
+    <% end %>
 </ul>
 
 <hr>
 
-<h3>Featured Songs</h3>
+<h3>Featured Song: </h3>
 
-  <%= Song.order("RANDOM()").first.title %>
 
+<% if Song.any? %>
+  <h4><%= link_to @random_song.title, subgenre_song_path(@random_song.subgenre, @random_song) %> by <em><%= @random_song.artist %></em></h4>
+<% end %>
 
 
 
@@ -19,7 +28,7 @@
 
 <h3>All songs available: (a-z)</h3>
   <% Song.all.order(title: :asc).each do |song| %>
-    <li> <big><%= link_to song.title, subgenre_song_path(@subgenres, song)  %></big>
+    <li> <big><%= link_to song.title, subgenre_song_path(song.subgenre, song)  %></big>
        - by <em><%= song.artist %></em>
        - posted <%= time_ago_in_words(song.created_at)  %> ago </li>
   <% end %>

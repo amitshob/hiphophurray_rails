@@ -1,4 +1,5 @@
 class SongsController < ApplicationController
+
   def new
     @subgenres = Subgenre.find(params[:subgenre_id])
     @songs = @subgenres.songs.new
@@ -22,12 +23,24 @@ class SongsController < ApplicationController
   def update
     @subgenres = Subgenre.find(params[:subgenre_id])
     @songs = @subgenres.songs.find(params[:id])
-    if @songs.update(song_params)
+    if params[:vote] == "up"
+      @songs.upvote += 1;
+      @songs.save;
+      redirect_to subgenre_path(@subgenres)
+    elsif params[:vote] == "down"
+      @songs = @subgenres.songs.find(params[:id])
+      @songs.downvote += 1;
+      @songs.save;
       redirect_to subgenre_path(@subgenres)
     else
-      render :edit
+      if @songs.update(song_params)
+        redirect_to subgenre_path(@subgenres)
+      else
+        render :edit
+      end
     end
   end
+
   def destroy
     @subgenres = Subgenre.find(params[:subgenre_id])
     @songs = @subgenres.songs.find(params[:id])
@@ -40,25 +53,25 @@ class SongsController < ApplicationController
     @songs = @subgenres.songs.find(params[:id])
   end
 
-  def upvote
-    @subgenres = Subgenre.find(params[:subgenre_id])
-    @songs = @subgenres.songs.find(params[:id])
-    @songs.upvote += 1;
-    @songs.save;
-    redirect_to subgenre_path(@subgenres)
-  end
-  
-  def downvote
-    @subgenres = Subgenre.find(params[:subgenre_id])
-    @songs = @subgenres.songs.find(params[:id])
-    @songs.downvote += 1;
-    @songs.save;
-    redirect_to subgenre_path(@subgenres)
-  end
+  # def upvote
+  #   @subgenres = Subgenre.find(params[:subgenre_id])
+  #   @songs = @subgenres.songs.find(params[:id])
+  #   @songs.upvote += 1;
+  #   @songs.save;
+  #   redirect_to subgenre_path(@subgenres)
+  # end
+  #
+  # def downvote
+  #   @subgenres = Subgenre.find(params[:subgenre_id])
+  #   @songs = @subgenres.songs.find(params[:id])
+  #   @songs.downvote += 1;
+  #   @songs.save;
+  #   redirect_to subgenre_path(@subgenres)
+  # end
 
 
   private
   def song_params
-    params.require(:song).permit(:title, :artist, :summary, :comments)
+    params.require(:song).permit(:title, :artist, :summary, :comments, :subgenre_id)
   end
 end

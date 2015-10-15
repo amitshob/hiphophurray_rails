@@ -1,7 +1,10 @@
 class SubgenresController < ApplicationController
   def index
     @subgenres = Subgenre.all
-    # @found_genre = @subgenres.find(params[:id])
+    if Song.any?
+      @random_song = Song.all.sample
+    end
+    @songs = Song.all
     render :index
   end
 

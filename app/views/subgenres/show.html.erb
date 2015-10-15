@@ -17,18 +17,19 @@
 
 <ul>
   <% @subgenres.songs.order(created_at: :desc).each do |song| %>
-    <li><big><big> <%= link_to song.title, subgenre_song_path(@subgenres, song) %></big></big>
+    <li>
+      <big><big><%= link_to song.title, subgenre_song_path(@subgenres, song) %></big></big>
       - <em><%= song.artist %></em>
+      &nbsp;
+      <big><%= link_to "▲",  subgenre_song_path(@subgenres, song, vote: "up"), :data => {:method => "patch"}  %><%= link_to "▼", subgenre_song_path(@subgenres, song, vote: "down"), :data => {:method => "patch"} %></big>
       <br>
        posted <%= time_ago_in_words(song.created_at)  %> ago
        - <%= link_to "Edit Song", edit_subgenre_song_path(@subgenres, song) %>
        | <%= link_to "Delete Song", subgenre_song_path(@subgenres, song),
           :data => {:confirm => "You Sure?",
             :method => "delete"} %>
-      <%= link_to "Upvote",  upvote_subgenre_song_path(@subgenres,song), :data => {:method => "update"}  %>
-      <%= link_to "Downvote", downvote_subgenre_song_path(@subgenres,song), :data => {:method => "update"} %>
-      <%=song.upvote%>
-      <%=song.downvote%>
+       | Upvotes: <%=song.upvote%>
+       | Downvotes: <%=song.downvote%>
   </li>
   <% end %>
 </ul>
